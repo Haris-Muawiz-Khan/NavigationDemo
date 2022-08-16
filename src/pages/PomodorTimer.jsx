@@ -23,22 +23,19 @@ export default function App({navigation}) {
 
     // Set up the interval.
     useEffect(() => {
-      function tick() {
-        savedCallback.current();
+      if (start) {
+        function tick() {
+          savedCallback.current();
+        }
+        if (delay !== null) {
+          let id = setInterval(tick, delay);
+          return () => clearInterval(id);
+        }
       }
-      if (delay !== null) {
-        let id = setInterval(tick, delay);
-        return () => clearInterval(id);
-      }
-    }, [delay]);
+    }, [delay, start]);
   }
 
   const intervalId = useInterval(() => {
-    console.log('ex')
-    if (!start) {
-      return clearInterval(intervalId)
-    }
-
     if (start && totalSecs != 0) {
       setTotalSecs(prevCount => --prevCount)
     } else {
@@ -54,12 +51,10 @@ export default function App({navigation}) {
           setTotalSecs(() => parseInt(breakMinutes * 60) + parseInt(breakSeconds))
         }
       }
-      clearInterval(intervalId)
     }
   }, 1000);
 
   function onPress() {
-
     if ((minutes === 0 && seconds === 0) || (breakMinutes === 0 && breakSeconds === 0)) {
       Alert.alert(
         "Time not set",
@@ -77,9 +72,6 @@ export default function App({navigation}) {
     } else {
       setStart(prevState => !prevState)
     }
-    if (!start) {
-      clearInterval(intervalId)
-    }
   }
 
   function resetCount() {
@@ -89,12 +81,16 @@ export default function App({navigation}) {
     setSeconds(0)
     setBreakMinutes(0)
     setBreakSeconds(0)
+    setWorkOrBreak(true)
   }
 
   return (
     <KeyboardAwareScrollView>
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity onPress={()=> navigation.navigate('Home')} style={styles.backButton}>
+      <TouchableOpacity onPress={()=> {
+        setStart(false)
+        navigation.navigate('Home')
+        }} style={styles.backButton}>
         <MaterialCommunityIcons name='home' color={'black'} size={30} />
       </TouchableOpacity>
       <Text style={{ fontWeight: 'bold', fontSize: 50, marginTop: 10, marginBottom: 10}}>

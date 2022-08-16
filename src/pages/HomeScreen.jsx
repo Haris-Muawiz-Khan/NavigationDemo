@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     width: '40%',
     height: 100,
-    // backgroundColor: 'rgba(0, 0, 0, 0.1)',
     backgroundColor: '#1C3879',
     marginTop: 25,
     marginHorizontal: '5%',
