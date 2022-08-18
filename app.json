@@ -1,10 +1,11 @@
 {
   "expo": {
-    "name": "NavigationDemo",
-    "slug": "NavigationDemo",
+    "name": "Master App",
+    "slug": "master-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "owner": "harismuawizkhan",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -24,7 +25,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.harismuawizkhan.masterapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"

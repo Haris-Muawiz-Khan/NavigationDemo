@@ -9,6 +9,10 @@ function HomeScreen({ navigation }) {
           <MaterialCommunityIcons name='timer-outline' size={60} color={'white'}/>
           <Text style={{color: 'white'}}>Pomodor Timer</Text>
         </TouchableOpacity>
+        <TouchableOpacity style={styles.timer} onPress={()=> navigation.navigate('Todo App')}>
+          <MaterialCommunityIcons name='check' size={60} color={'white'}/>
+          <Text style={{color: 'white'}}>Todo App</Text>
+        </TouchableOpacity>
     </SafeAreaView>
   )
 }
